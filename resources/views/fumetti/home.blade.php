@@ -23,12 +23,16 @@
                 <td>{{ $fumetto->title }}</td>
                 <td>{{ $fumetto->series }}</td>
                 <td>{{ $fumetto->price }}</td>
+                <td>
+                    <a href="{{ route('fumetti.show', $fumetto) }}" type="button" class="btn btn-primary">Mostra</a> 
+                </td>
             </tr>
 
             @endforeach
          
         </tbody>
       </table>
+      {{$listaFumetti->links()}}
 </div>
     
 @endsection

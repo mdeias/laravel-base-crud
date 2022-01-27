@@ -15,7 +15,7 @@ class FumettoController extends Controller
     public function index()
     {
 
-        $listaFumetti = Fumetto::all();
+        $listaFumetti = Fumetto::paginate(4);
         return view('fumetti.home', compact('listaFumetti'));
     }
 
@@ -48,7 +48,9 @@ class FumettoController extends Controller
      */
     public function show($id)
     {
-        //
+        $fumetto = Fumetto::find($id);
+
+        return view('fumetti.show', compact('fumetto'));
     }
 
     /**
