@@ -13,5 +13,7 @@
 
        <a href="{{ route('fumetti.index') }}" type="button" class="btn btn-danger">Indietro</a> 
 
+       <a href="{{ route('fumetti.edit', $fumetto) }}" type="button" class="btn btn-secondary">Modifica</a> 
+
    </div>
 @endsection
