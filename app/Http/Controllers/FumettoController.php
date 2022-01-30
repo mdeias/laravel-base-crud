@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Fumetto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class FumettoController extends Controller
 {
@@ -26,7 +27,7 @@ class FumettoController extends Controller
      */
     public function create()
     {
-        //
+        return view('fumetti.create');
     }
 
     /**
@@ -37,7 +38,18 @@ class FumettoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $new_fumetto = new Fumetto();
+
+        $new_fumetto->fill($data);
+
+        $new_fumetto->slug = Str::of($new_fumetto->title)->slug('-');
+
+        $new_fumetto->save();
+
+
+        return redirect()->route('fumetti.show', $new_fumetto);
     }
 
     /**
