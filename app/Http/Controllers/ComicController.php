@@ -57,6 +57,7 @@ class ComicController extends Controller
                 'description.max'=>'Descrizione troppo lunga',
                 'description.min'=>'Descrizione troppo corta',
 
+                'thumb.required'=>'Url è un campo obbligatorio',
                 'thumb.max'=>'Url troppo lungo',
 
                 'price.required'=>'Il prezzo è un campo obbligatorio',
@@ -68,6 +69,7 @@ class ComicController extends Controller
                 'series.min'=>'Serie troppo lungo',
 
                 
+                'type.required'=>'Il tipo è un campo obbligatorio',
                 'type.max'=>'Tipo troppo lungo',
                 'type.min'=>'Tipo troppo lungo',
 
@@ -124,6 +126,46 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
+
+
+        $request->validate(
+            [
+                'title'=>'required|max:50|min:2',
+                'description'=>'required|min:10',
+                'thumb'=>'required|max:250',
+                'price'=>'required|numeric|min:1|max:99',
+                'series'=>'required|max:60|min:2',
+                'type'=>'required|max:20|min:2',
+            ],
+            [
+                'title.required'=>'Il titolo è un campo obbligatorio',
+                'title.max'=>'Titolo troppo lungo',
+                'title.min'=>'Titolo troppo corto',
+
+                'description.required'=>'La descrizione è un campo obbligatorio',
+                'description.max'=>'Descrizione troppo lunga',
+                'description.min'=>'Descrizione troppo corta',
+
+                'thumb.required'=>'Url è un campo obbligatorio',
+                'thumb.max'=>'Url troppo lungo',
+
+                'price.required'=>'Il prezzo è un campo obbligatorio',
+                'price.max'=>'Il prezzo è troppo alto',
+                'price.min'=>'Il prezzo è troppo basso',
+
+                'series.required'=>'La serie è obbligatoria',
+                'series.max'=>'Serie troppo lunga',
+                'series.min'=>'Serie troppo lungo',
+
+                
+                'type.required'=>'Il tipo è un campo obbligatorio',
+                'type.max'=>'Tipo troppo lungo',
+                'type.min'=>'Tipo troppo lungo',
+
+            ]
+
+        );
+
         $data = $request->all();
         
         
