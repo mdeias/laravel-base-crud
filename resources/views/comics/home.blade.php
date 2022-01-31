@@ -27,9 +27,11 @@
                     <a href="{{ route('comics.show', $comic) }}" type="button" class="btn btn-primary">Mostra</a> 
                 </td>
                 <td>
-                   <form action="{{ route('comics.destroy', $comic) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
+                   <form action="{{ route('comics.destroy', $comic) }}"
+                   onsubmit="return confirm('sei sicuro di voler eliminare {{$comic->title}} ?')"
+                   method="POST">
+                   @csrf
+                   @method('DELETE')
 
                     <button type="submit" class="btn btn-danger"> Cancella </button>
                   
