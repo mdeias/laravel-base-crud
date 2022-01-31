@@ -5,6 +5,14 @@
 <div class="container">
     <h1>Fumetti</h1>
 
+    @if (session('deleted'))
+      
+    <div class="alert alert-danger" role="alert">
+      {{session('deleted')}}
+    </div>
+    
+    @endif
+
     <table class="table">
         <thead>
           <tr>
