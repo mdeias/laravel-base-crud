@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Fumetto;
+use App\Comic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class FumettoController extends Controller
+class ComicController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class FumettoController extends Controller
     public function index()
     {
 
-        $listaFumetti = Fumetto::paginate(4);
-        return view('fumetti.home', compact('listaFumetti'));
+        $comicList = Comic::paginate(4);
+        return view('comics.home', compact('comicList'));
     }
 
     /**
@@ -27,7 +27,7 @@ class FumettoController extends Controller
      */
     public function create()
     {
-        return view('fumetti.create');
+        return view('comics.create');
     }
 
     /**
@@ -40,16 +40,16 @@ class FumettoController extends Controller
     {
         $data = $request->all();
 
-        $new_fumetto = new Fumetto();
+        $new_comic = new Comic();
 
-        $new_fumetto->fill($data);
+        $new_comic->fill($data);
 
-        $new_fumetto->slug = Str::of($new_fumetto->title)->slug('-');
+        $new_comic->slug = Str::of($new_comic->title)->slug('-');
 
-        $new_fumetto->save();
+        $new_comic->save();
 
 
-        return redirect()->route('fumetti.show', $new_fumetto);
+        return redirect()->route('comics.show', $new_comic);
     }
 
     /**
@@ -60,9 +60,9 @@ class FumettoController extends Controller
      */
     public function show($id)
     {
-        $fumetto = Fumetto::find($id);
+        $comic = Comic::find($id);
 
-        return view('fumetti.show', compact('fumetto'));
+        return view('comics.show', compact('comic'));
     }
 
     /**
@@ -73,9 +73,9 @@ class FumettoController extends Controller
      */
     public function edit($id)
     {
-        $fumetto = Fumetto::find($id);
+        $comics = Comic::find($id);
 
-        return view('fumetti.edit', compact('fumetto'));
+        return view('comics.edit', compact('comic'));
     }
 
     /**
@@ -85,14 +85,19 @@ class FumettoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Fumetto $fumetto)
+    public function update(Request $request, Comic $comic)
     {
         $data = $request->all();
-        $data['slug'] = Str::slug($data['title'], '-');
+        
+        
+        $comic->update($data);
 
-        $fumetto->update($data);
+        // dd($fumetto);
 
-       return redirect()->route('fumetti.show', $fumetto);
+        // $comics = $comic;
+
+       //return redirect()->route('fumetti.show', ['fumetti' => $fumetto->id]);
+       return redirect()->route('comics.show', $comic);
     }
 
     /**
@@ -101,8 +106,12 @@ class FumettoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Comic $comic, $id)
     {
-        //
+        $comic= Comic::find($id);
+        $comic->delete();
+        return redirect()->route('comics.index');
     }
+
+    
 }

@@ -5,10 +5,10 @@
           <a class="nav-link"  href="{{ route('home') }}">home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('fumetti.index') }}">fumetti</a>
+          <a class="nav-link" href="{{ route('comics.index') }}">fumetti</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('fumetti.create') }}">crea fumetto</a>
+          <a class="nav-link" href="{{ route('comics.create') }}">crea fumetto</a>
         </li>
         
       </ul>
