@@ -28,7 +28,9 @@
 
               <input type="text" class="form-control @error('title')
               is-invalid  
-              @enderror" id="title" name="title" placeholder="Titolo" >
+              @enderror" 
+              value="{{old('title')}}"
+              id="title" name="title" placeholder="Titolo" >
               
             </div>
 
@@ -40,7 +42,9 @@
                 <textarea  class="form-control 
                 @error('description')
                 is-invalid  
-                @enderror" id="description" name="description" placeholder="Descrizione" >
+                @enderror" 
+                id="description" name="description" placeholder="Descrizione" >
+                {{old('description')}}
                 </textarea>
             </div>
 
@@ -53,6 +57,7 @@
                 @error('thumb')
                 is-invalid  
                 @enderror"
+                value="{{old('thumb')}}"
                 id="thumb" name="thumb" placeholder="Link" >
             </div>
 
@@ -65,6 +70,7 @@
                 @error('price')
                 is-invalid  
                 @enderror" 
+                value="{{old('price')}}"
                 id="price" name="price" placeholder="Prezzo" >
             </div>
 
@@ -77,7 +83,8 @@
                 @error('series')
                 is-invalid  
                 @enderror"
-               id="series" name="series" placeholder="Serie" >
+                value="{{old('series')}}"
+                id="series" name="series" placeholder="Serie" >
             </div>
 
             <div class="mb-3">
@@ -95,7 +102,8 @@
                 @error('type')
                 is-invalid  
                 @enderror"
-               id="type" name="type" placeholder="Tipo" >
+                value="{{old('type')}}"
+                id="type" name="type" placeholder="Tipo" >
             </div>
 
             <button class="btn btn-primary" type="submit">
